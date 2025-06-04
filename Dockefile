@@ -1,0 +1,11 @@
+FROM centos:7
+RUN yum insall -y httpd \
+    zip\
+    unzip
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page285/viking.zip
+WORKDIR /var/www/html
+RUN unzip viking.zip
+RUN cp -vf photogenic/* .
+RUN rm -rf photogenic photogenic.zip
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+EXPOSE 443
